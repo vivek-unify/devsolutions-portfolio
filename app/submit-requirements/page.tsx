@@ -19,6 +19,9 @@ const domainOptions = [
   { id: "ai", label: "AI Integration" },
   { id: "mobile", label: "Mobile Development" },
   { id: "devops", label: "DevOps & Cloud" },
+  { id: "work-help", label: "Work Task Help (Overwhelmed/On Break)" },
+  { id: "feature-outsource", label: "Outsource Specific Feature" },
+  { id: "student-assignment", label: "Student Assignment/Project Help" },
   { id: "other", label: "Other" }
 ]
 
@@ -134,7 +137,7 @@ export default function SubmitRequirementsPage() {
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Submit Your Requirements</h1>
             <p className="text-muted-foreground text-lg">
-              Tell us about your project and we'll get back to you with a custom proof of concept
+              Whether it's a full project, specific feature, work help, or student assignment - we're here to help
             </p>
           </div>
 

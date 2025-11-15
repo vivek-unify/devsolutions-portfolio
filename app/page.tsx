@@ -2,7 +2,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code2, Database, Layers, Brain, Smartphone, Cloud, ArrowRight, Sparkles } from 'lucide-react'
+import { Code2, Database, Layers, Brain, Smartphone, Cloud, ArrowRight, Sparkles, Briefcase, Users, GraduationCap, Puzzle } from 'lucide-react'
+import { AnimatedBackground } from "@/components/animated-background"
 
 const services = [
   {
@@ -49,6 +50,37 @@ const services = [
   }
 ]
 
+const useCases = [
+  {
+    icon: Briefcase,
+    title: "Overwhelmed at Work?",
+    description: "Took a break or need help catching up? We'll handle your development tasks professionally and on time.",
+    gradient: "from-orange-500/10 to-amber-500/10",
+    link: "/solutions/work-help"
+  },
+  {
+    icon: Puzzle,
+    title: "Outsource Specific Features",
+    description: "Need a particular component or feature built? We can integrate seamlessly with your existing codebase.",
+    gradient: "from-blue-500/10 to-cyan-500/10",
+    link: "/solutions/feature-outsource"
+  },
+  {
+    icon: GraduationCap,
+    title: "Student Projects & Assignments",
+    description: "Get expert guidance and solutions for your programming assignments and academic projects.",
+    gradient: "from-purple-500/10 to-pink-500/10",
+    link: "/solutions/student-help"
+  },
+  {
+    icon: Users,
+    title: "Business Solutions",
+    description: "Complete end-to-end development for your startup or business idea, from concept to deployment.",
+    gradient: "from-green-500/10 to-emerald-500/10",
+    link: "/solutions/business"
+  }
+]
+
 const howItWorks = [
   {
     step: "01",
@@ -72,7 +104,8 @@ const howItWorks = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <AnimatedBackground />
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -83,14 +116,14 @@ export default function HomePage() {
             <span className="font-semibold text-lg">DevSolutions</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
+            <Link href="#who-we-help" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Who We Help
+            </Link>
             <Link href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Services
             </Link>
             <Link href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
-            </Link>
-            <Link href="#benefits" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Benefits
             </Link>
           </nav>
           <Link href="/submit-requirements">
@@ -109,14 +142,14 @@ export default function HomePage() {
             Risk-Free Development
           </Badge>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
-            Build Your Vision with
+            Your Code, Done Right
             <span className="block mt-2 bg-gradient-to-r from-primary via-amber-400 to-primary bg-clip-text text-transparent animate-gradient">
-              Zero Risk
+              Zero Risk, Zero Hassle
             </span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We deliver a proof of concept first. See the quality, validate the approach, then commit.
-            You only pay when you're completely satisfied.
+            Whether you're overwhelmed with work, outsourcing a feature, need help with assignments, or building a business - we've got you covered.
+            See the proof of concept first, pay only when satisfied.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <Link href="/submit-requirements">
@@ -128,6 +161,40 @@ export default function HomePage() {
               <Link href="#services">View Services</Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Who We Help */}
+      <section className="container mx-auto px-4 py-20 md:py-32 bg-muted/20">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">Who We Help</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            From professionals to students, we support everyone with their development needs
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {useCases.map((useCase) => {
+            const Icon = useCase.icon
+            return (
+              <Link key={useCase.title} href={useCase.link}>
+                <Card className="group hover:border-primary/30 transition-all border-border/40 bg-card/50 backdrop-blur overflow-hidden cursor-pointer h-full">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${useCase.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                  <CardHeader className="relative text-center pb-4">
+                    <div className="h-14 w-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                      <Icon className="h-7 w-7 text-primary" />
+                    </div>
+                    <CardTitle className="text-lg mb-3">{useCase.title}</CardTitle>
+                    <CardDescription className="leading-relaxed text-sm">
+                      {useCase.description}
+                    </CardDescription>
+                    <div className="mt-4 text-xs text-primary group-hover:underline">
+                      Learn more →
+                    </div>
+                  </CardHeader>
+                </Card>
+              </Link>
+            )
+          })}
         </div>
       </section>
 
@@ -206,7 +273,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Why Choose Us</h2>
             <p className="text-muted-foreground text-lg">
-              Built on trust, delivered with excellence
+              Flexible, reliable, and tailored to your unique needs
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
@@ -214,22 +281,32 @@ export default function HomePage() {
               {
                 icon: "🛡️",
                 title: "Zero Upfront Risk",
-                description: "Review our proof of concept before making any commitment. See the quality first-hand."
+                description: "Review our proof of concept before making any commitment. Perfect for trying out our services."
               },
               {
                 icon: "⚡",
-                title: "Quality Guaranteed",
-                description: "We deliver production-ready code following industry best practices and standards."
+                title: "Flexible Engagement",
+                description: "One-time projects, ongoing support, single features, or complete solutions - we adapt to your needs."
               },
               {
                 icon: "🚀",
-                title: "Fast Turnaround",
-                description: "Quick iterations and responsive communication throughout the development cycle."
+                title: "Fast & Reliable",
+                description: "Quick turnaround times with consistent communication. We understand deadlines matter."
               },
               {
-                icon: "👥",
-                title: "Expert Team",
-                description: "Experienced developers across all modern tech stacks and frameworks."
+                icon: "🎓",
+                title: "All Skill Levels Welcome",
+                description: "From students to professionals to businesses - we provide the right level of support for everyone."
+              },
+              {
+                icon: "💼",
+                title: "Professional & Discreet",
+                description: "Your projects and information are handled with complete confidentiality and professionalism."
+              },
+              {
+                icon: "🔧",
+                title: "Expert Solutions",
+                description: "Production-ready code following best practices across all modern tech stacks and frameworks."
               }
             ].map((item) => (
               <div key={item.title} className="flex gap-4 group">
