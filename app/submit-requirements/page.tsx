@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Code2, ArrowLeft, Loader2, Send } from 'lucide-react'
+import { Code2, ArrowLeft, Loader2, Send, Phone, Mail } from 'lucide-react'
 import { createClient } from "@/lib/supabase/client"
 
 const domainOptions = [
@@ -23,15 +23,6 @@ const domainOptions = [
   { id: "feature-outsource", label: "Outsource Specific Feature" },
   { id: "student-assignment", label: "Student Assignment/Project Help" },
   { id: "other", label: "Other" }
-]
-
-const budgetRanges = [
-  "Under $5,000",
-  "$5,000 - $10,000",
-  "$10,000 - $25,000",
-  "$25,000 - $50,000",
-  "$50,000+",
-  "Not sure yet"
 ]
 
 const timelineOptions = [
@@ -56,7 +47,6 @@ export default function SubmitRequirementsPage() {
     projectTitle: "",
     projectDescription: "",
     domains: [] as string[],
-    budgetRange: "",
     timeline: "",
     additionalRequirements: ""
   })
@@ -94,7 +84,7 @@ export default function SubmitRequirementsPage() {
           project_title: formData.projectTitle,
           project_description: formData.projectDescription,
           domain: formData.domains,
-          budget_range: formData.budgetRange || null,
+          budget_range: null,
           timeline: formData.timeline || null,
           additional_requirements: formData.additionalRequirements || null,
           status: 'new'
@@ -136,9 +126,26 @@ export default function SubmitRequirementsPage() {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Submit Your Requirements</h1>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-lg mb-6">
               Whether it's a full project, specific feature, work help, or student assignment - we're here to help
             </p>
+
+            {/* Contact Information */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                <a href="tel:+917815948979" className="hover:text-foreground transition-colors">
+                  +91 78159 48979
+                </a>
+              </div>
+              <div className="hidden sm:block text-border">|</div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-primary" />
+                <a href="mailto:contact@devsolutions-portfolio.vercel.app" className="hover:text-foreground transition-colors">
+                  contact@devsolutions-portfolio.vercel.app
+                </a>
+              </div>
+            </div>
           </div>
 
           <Card className="border-border/40 bg-card/50 backdrop-blur">
@@ -252,36 +259,19 @@ export default function SubmitRequirementsPage() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="budgetRange">Budget Range</Label>
-                      <select
-                        id="budgetRange"
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        value={formData.budgetRange}
-                        onChange={(e) => setFormData(prev => ({ ...prev, budgetRange: e.target.value }))}
-                      >
-                        <option value="">Select budget range</option>
-                        {budgetRanges.map((range) => (
-                          <option key={range} value={range}>{range}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="timeline">Timeline</Label>
-                      <select
-                        id="timeline"
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        value={formData.timeline}
-                        onChange={(e) => setFormData(prev => ({ ...prev, timeline: e.target.value }))}
-                      >
-                        <option value="">Select timeline</option>
-                        {timelineOptions.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="timeline">Timeline</Label>
+                    <select
+                      id="timeline"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      value={formData.timeline}
+                      onChange={(e) => setFormData(prev => ({ ...prev, timeline: e.target.value }))}
+                    >
+                      <option value="">Select timeline</option>
+                      {timelineOptions.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
                   </div>
 
                   <div className="space-y-2">

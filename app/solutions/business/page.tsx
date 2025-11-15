@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Code2, ArrowRight, Users, Rocket, Target, CheckCircle2, ArrowLeft, Zap, Shield } from 'lucide-react'
+import { Footer } from "@/components/footer"
 
 export default function BusinessPage() {
   return (
@@ -236,21 +237,7 @@ export default function BusinessPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 py-8 bg-muted/20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <Code2 className="h-3 w-3 text-primary" />
-              </div>
-              <span className="font-semibold">DevSolutions</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              © 2025 DevSolutions. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
